@@ -8,5 +8,9 @@
  * @type {import('gatsby').GatsbyConfig}
  */
 module.exports = {
-  plugins: [],
-}
+  siteMetadata: {
+    title: "Dan\'s Dialog",
+    author: "Daniel Hernandez",
+  },
+  plugins: ["gatsby-plugin-sass"],
+};
