@@ -36,19 +36,25 @@ export const query = graphql`
       publishedDate(formatString: "MMMM Do, YYYY")
       body {
         raw
+        references {
+          ... on ContentfulAsset {
+            contentful_id
+            __typename
+            gatsbyImageData(formats: AUTO, layout: FULL_WIDTH)
+          }
+        }
       }
     }
   }
 `;
 
 const Post = (props) => {
-  console.log(props.data.contentfulBlogPost.body.raw)
-  const { bodyRichText } = props.data.contentfulBlogPost.body.raw;
+  const { body } = props.data.contentfulBlogPost;
   return (
     <Layout>
       <h1>{props.data.contentfulBlogPost.title}</h1>
       <p>{props.data.contentfulBlogPost.publishedDate}</p>
-      <div>{bodyRichText && renderRichText(bodyRichText, options)}</div>
+      <div>{body && renderRichText(body, options)}</div>
     </Layout>
   );
 };
