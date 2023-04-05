@@ -2,10 +2,11 @@ import React from "react";
 import { graphql } from "gatsby";
 import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 import Layout from "../components/layout/layout";
 
-const Bold = ({ children }) => <span className="bold">{children}</span>;
+const Bold = ({ children }) => <b className="bold">{children}</b>;
 const Text = ({ children }) => <p className="align-center">{children}</p>;
 
 const options = {
@@ -15,14 +16,19 @@ const options = {
   renderNode: {
     [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
     [BLOCKS.EMBEDDED_ASSET]: (node) => {
-      return (
-        <>
-          <h2>Embedded Asset</h2>
-          <pre>
-            <code>{JSON.stringify(node, null, 2)}</code>
-          </pre>
-        </>
-      );
+      const { gatsbyImageData } = node.data.target;
+      if (!gatsbyImageData) {
+        return (
+          <>
+            <h2>Embedded Asset</h2>
+            <pre>
+              <code>{JSON.stringify(node, null, 2)}</code>
+            </pre>
+          </>
+        );
+      }
+      console.log(gatsbyImageData);
+      return <GatsbyImage image={gatsbyImageData} alt={node.data.target.description}/>;
     },
   },
 };
@@ -41,6 +47,7 @@ export const query = graphql`
             contentful_id
             __typename
             gatsbyImageData(formats: AUTO, layout: FULL_WIDTH)
+            description
           }
         }
       }
