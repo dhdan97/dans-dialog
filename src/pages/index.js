@@ -2,8 +2,11 @@ import * as React from "react";
 import { Link } from "gatsby";
 
 import Layout from "../components/layout/layout";
+import MyHead from "../components/myHead";
 
-import '../styles/index.scss';
+import "../styles/index.scss";
+
+export const Head = () => <MyHead title="Home"/>;
 
 const IndexPage = () => {
   return (

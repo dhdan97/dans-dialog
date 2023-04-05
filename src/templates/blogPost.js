@@ -5,9 +5,12 @@ import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { GatsbyImage } from "gatsby-plugin-image";
 
 import Layout from "../components/layout/layout";
+import MyHead from "../components/myHead";
 
 const Bold = ({ children }) => <b className="bold">{children}</b>;
 const Text = ({ children }) => <p className="align-center">{children}</p>;
+
+export const Head = (props) => <MyHead title={props.data.contentfulBlogPost.title}/>;
 
 const options = {
   renderMark: {

@@ -2,6 +2,9 @@ import React from "react";
 import { Link, graphql, useStaticQuery } from "gatsby";
 
 import Layout from "../components/layout/layout";
+import MyHead from "../components/myHead";
+
+export const Head = () => <MyHead title="Blog"/>;
 
 const BlogPage = () => {
   const data = useStaticQuery(graphql`
