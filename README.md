@@ -9,7 +9,7 @@ Still a **Work In Progress**, but you can view the site at: https://bespoke-cheb
 
 Would you like to run this locally? Here's what you need to do:
 
-**Note: Locally, the blog content will be unable to be rendered due to secrets not being available.**
+**Note: Locally, the blog content will be unable to be rendered due to secrets not being available. Also requires Gatsby CLI to be installed**
 - Git clone/fork this repository into your local system.
 - Navigate to the root file using your terminal.
 - Install dependencies with ``npm install``.
